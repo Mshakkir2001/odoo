@@ -1,0 +1,30 @@
+table th, table td {
+  border: 1px solid #888 !important;
+  padding: 4px 6px !important;
+  font-size: 12px;
+}
+.text-end {
+  text-align: right !important;
+}
+.text-start {
+  text-align: left !important;
+}
+.mt-2 {
+  margin-top: 10px;
+}
+.mt-4 {
+  margin-top: 20px;
+}
+.mt-5 {
+  margin-top: 30px;
+}
+.mb-2 {
+  margin-bottom: 10px;
+}
+.text-center {
+  text-align: center;
+}
+.table td {
+  padding: 6px 10px;
+  vertical-align: middle;
+}

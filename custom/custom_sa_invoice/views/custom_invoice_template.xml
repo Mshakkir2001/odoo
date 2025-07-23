@@ -1,0 +1,259 @@
+
+<odoo>
+  <template id="report_invoice_document_inherit_sa" inherit_id="account.report_invoice_document">
+    <xpath expr="//div[@id='informations']/div[@name='due_date']" position="replace"/>
+    <xpath expr="//div[hasclass('row')][.//div[@name='no_shipping'] or .//div[@name='address_same_as_shipping'] or .//div[@name='address_not_same_as_shipping']]" position="replace"/>
+    <xpath expr="//t[@t-set='layout_document_title']" position="replace"/>
+    <xpath expr="//div[@id='informations']/div[@name='invoice_date']" position="replace"/>
+    <xpath expr="//div[@id='informations']/div[@name='delivery_date']" position="replace"/>
+    <xpath expr="//div[@class='mb-3' and contains(@t-if, 'payment_reference')]" position="replace"/>
+
+    <xpath expr="//div[hasclass('page')]" position="before">
+
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap;">
+
+  <!-- English Left -->
+   <div style="width: 32%; text-align: left; font-size: 13px; line-height: 1.6;">
+    <u><strong style="color: #581d35;">SAMEER SHARAF AL OTAIBI TRADING COMPANY</strong></u><br/>
+    C.R. 4030216154<br/>
+    VAT Regd : 311299944700003<br/>
+    Al Anwar Centre, Showroom No. 12,<br/>
+    Baladiya Street, Jeddah 23334 - Saudi Arabia<br/>
+    Tel : 0536122833<br/>
+    Email: ssaoe.jeddah@gmail.com
+  </div>
+
+  <!-- Center Logo -->
+  <div style="width:20px; text-align: center;">
+    <img src="/custom_sa_invoice/static/src/img/logo.png"
+         style="height: 70px; object-fit: contain;" alt="Logo"/>
+  </div>
+
+  <!-- Arabic Right -->
+<div style="width: 32%; text-align: right; direction: rtl; font-size: 13px; line-height: 1.6;">
+    <u><strong style="color: #581d35;">شركة سمير شرف العتيبي التجارية</strong></u><br/>
+    س.ت: ٤٠٣٠٢١٦١٥٤<br/>
+    رقم ضريبة القيمة المضافة: ٣١١٢٩٩٩٤٤٧٠٠٠٠٣<br/>
+    مركز الأنوار، رقم محل ١٢، شارع البلدية<br/>
+    جدة ٢٣٣٣٤ - المملكة العربية السعودية<br/>
+    هاتف: ٠٥٣٦١٢٢٨٣٣<br/>
+    Email: ssaoe.jeddah@gmail.com
+  </div>
+
+</div>
+
+
+  <div style="background-color:#581d35; color:white; padding:6px 0; text-align:center; margin:10px 0; font-weight:bold; font-size:16px;">
+    فاتورة ضريبية / Tax Invoice
+  </div>
+     <div style="border:1px solid #999; margin-bottom:10px; font-size:12px;">
+
+  <!-- Customer Section -->
+  <table style="width:100%; border-collapse:collapse;">
+    <tr style="background-color:#d3d3d3;">
+  <td colspan="2" style="padding:4px 8px; font-weight:bold;">
+    Sold To &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; اسم العميل
+  </td>
+    </tr>
+    <tr>
+      <td colspan="2" style="padding:6px 10px;">
+        <strong><t t-esc="o.partner_id.name"/></strong><br/><br/>
+        <span><strong>VAT NO :</strong> <t t-esc="o.partner_id.vat or 'N/A'"/></span>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Invoice Info Section -->
+  <table style="width:100%; border-top:1px solid #999; background-color:#d3d3d3; font-weight:bold;">
+    <tr>
+      <td style="padding:4px 8px;">
+        <span>Inv #.</span>
+        &#160;&#160;&#160;&#160;
+        <span>رقم الفاتورة</span>
+        &#160;&#160;&#160;&#160;
+        <span t-esc="o.name"/>
+      </td>
+     <td style="padding:4px 8px; white-space: nowrap;">
+  <strong>Date :</strong>
+  <span t-esc="o.invoice_date.strftime('%d/%b/%Y') if o.invoice_date else ''"/>
+  &#160;&#160;&#160;&#160;
+  <strong>التاريخ</strong>
+</td>
+      <td t-if="o.delivery_date">
+     <div class="col" name="delivery_date">
+    <strong>Delivery Date / تاريخ التسليم :</strong>
+      <span t-field="o.delivery_date"/>
+     </div>
+      </td>
+
+    </tr>
+
+     <tr>
+        <td style="border: 1px solid #000; padding: 4px; width: 33%;">
+<!--          <strong>PO No:</strong> <t t-esc="o.invoice_origin or ''"/>-->
+            <t t-if="o.po_number">
+                  <p><strong>P.O Number:</strong> <span t-esc="o.po_number"/></p>
+            </t>
+        </td>
+        <td style="border: 1px solid #000; padding: 4px; width: 33%;">
+          <strong>Terms:</strong> <t t-esc="o.invoice_payment_term_id.name or ''"/>
+        </td>
+       <td style="border: 1px solid #000; padding: 4px; width: 34%;">
+           <strong>Delivery Note:</strong>
+           <t t-esc="o.delivery_note or ''"/>
+       </td>
+      </tr>
+  </table>
+</div>
+
+</xpath>
+
+    <!-- ✅ Replace Table Headers -->
+    <xpath expr="//table[@name='invoice_line_table']" position="replace">
+          <table name="invoice_line_table" style="width:100%; border-collapse: collapse; font-size:12px; text-align:center;">
+                  <thead>
+                      <tr>
+                         <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                             م<br/><span style="font-weight:normal;">S.N</span>
+                         </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                              الصنف<br/><span style="font-weight:normal;">Item</span>
+                          </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                              الوصف<br/><span style="font-weight:normal;">Description</span>
+                          </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                              الكمية<br/><span style="font-weight:normal;">QTY</span>
+                          </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                              الوحدة<br/><span style="font-weight:normal;">Unit</span>
+                          </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                              سعر الوحدة<br/><span style="font-weight:normal;">S.Rate</span>
+                          </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                              خص<br/><span style="font-weight:normal;">Disc</span>
+                          </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+
+                          </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                              الضريبة %<br/><span style="font-weight:normal;">VAT%</span></th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                          </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                              القيمة الضريبة <br/><span style="font-weight:normal;">VAT</span>
+                          </th>
+                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                              القيمة الإجمالية<br/><span style="font-weight:normal;">Total Price</span>
+                          </th>
+
+                      </tr>
+                  </thead>
+              <tbody>
+                  <t t-foreach="o.invoice_line_ids" t-as="line" t-esc-options='{"widget": "float", "precision_digits": 2}'>
+                      <tr>
+                          <td style="border: 1px solid #000;"><t t-esc="line.sequence"/></td>
+                          <td style="border: 1px solid #000;"><t t-esc="line.product_id.display_name"/></td>
+                          <td style="border: 1px solid #000;"><t t-esc="line.name"/></td>
+                          <td style="border: 1px solid #000;"><t t-esc="line.quantity"/></td>
+                          <td style="border: 1px solid #000;"><t t-esc="line.product_uom_id.name"/></td>
+                          <td style="border: 1px solid #000;"><t t-esc="line.price_unit"/></td>
+                          <td style="border: 1px solid #000;"><t t-esc="line.discount"/>%</td>
+                          <td style="border: 1px solid #000;"><t t-esc="line.price_subtotal"/></td>
+                          <td style="border: 1px solid #000;">
+                              <t t-if="line.tax_ids">
+                                  <t t-esc="', '.join(['%.2f' % tax.amount for tax in line.tax_ids])"/>%
+                              </t>
+                          </td>
+                          <td style="border: 1px solid #000;"><t t-esc="line.price_total - line.price_subtotal"/></td>
+                          <td style="border: 1px solid #000;"><t t-esc="line.price_total"/></td>
+                      </tr>
+                  </t>
+              </tbody>
+          </table>
+    </xpath>
+
+<xpath expr="//div[@id='right-elements']" position="replace">
+  <div class="mt-4">
+    <table style="width:100%; border-collapse: collapse; font-size:12px; text-align:left;">
+      <tr>
+        <td style="width:25%; border:1px solid #000; padding:6px;">
+          <strong>Delivered by<br/>سلمت بواسطة</strong><br/><br/><br/>
+        </td>
+        <td rowspan="2" style="width:20%; text-align:center; border:1px solid #000;">
+          <img src="/custom_sa_invoice/static/src/img/stamp.png" style="max-height:100px; max-width:100px;" />
+        </td>
+        <td rowspan="2" style="width:20px; text-align:center; border:1px solid #000;">
+          <t t-if="o.zatca_qr_code">
+            <img t-att-src="'data:image/png;base64,%s' % o.zatca_qr_code.decode('utf-8')" style="max-height:100px; max-width:100px;" />
+          </t>
+        </td>
+        <td style="width:25%; border:1px solid #000; padding:6px;">
+          <strong>Total Amount :<br/>المبلغ الإجمالي</strong><br/>
+          <span t-esc="o.amount_untaxed"/>
+        </td>
+      </tr>
+      <tr>
+        <td style="border:1px solid #000; padding:6px;">
+          <strong>Received by<br/>المستلم</strong><br/><br/><br/>
+        </td>
+        <td style="border:1px solid #000; padding:6px;">
+          <strong>Discount :<br/>الخصم</strong><br/>
+          <!-- Optional: Display discount value here -->
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="border:1px solid #000; padding:6px;">
+          <strong><t t-esc="o.currency_id.amount_to_text(o.amount_total) + ' Only'"/></strong>
+        </td>
+        <td style="border:1px solid #000; padding:6px;">
+          <strong>Net Amount :<br/>صافي المجموع</strong><br/>
+          <span t-esc="o.amount_untaxed"/>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="border:1px solid #000;"></td>
+        <td style="border:1px solid #000; padding:6px;">
+          <strong>VAT (15%) :<br/>ضريبة القيمة المضافة</strong><br/>
+          <span t-esc="o.amount_tax"/>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="border:1px solid #000;"></td>
+        <td style="border:1px solid #000; padding:6px;">
+          <strong>Grand Total :<br/>المبلغ الإجمالي</strong><br/>
+          <span><t t-esc="o.amount_total"/></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+</xpath>
+
+
+
+  <xpath expr="//div[@id='payment_term']" position="after">
+  <div class="mt-4" style="margin-top:10px;">
+    <table style="width:100%; border:1px solid #000; border-collapse:collapse; font-size:12px;">
+      <tr>
+        <!-- English label right-aligned -->
+        <td style="width:30%; padding:6px 10px; text-align:right; font-weight:bold; white-space: nowrap;">
+          Bank Details :
+        </td>
+
+        <!-- Centered bank info -->
+        <td style="width:40%; padding:6px 10px; text-align:center; white-space: normal;">
+          SNB Beneficiary Name: Sameer Sharaf Al-Otibi Trading Co.<br/>
+          IBAN: SA29 1000 00 10768366000104
+        </td>
+
+        <!-- Arabic label left-aligned -->
+        <td style="width:30%; padding:6px 10px; text-align:left; font-weight:bold; white-space: nowrap;">
+          التفاصيل المصرفية :
+        </td>
+      </tr>
+    </table>
+  </div>
+</xpath>
+  </template>
+</odoo>
