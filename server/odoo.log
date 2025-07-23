@@ -1,0 +1,19 @@
+2025-07-23 05:12:27,673 17836 INFO ? odoo: Odoo version 18.0-20250722 
+2025-07-23 05:12:27,673 17836 INFO ? odoo: Using configuration file at C:\Users\welcome\Desktop\odoo\server\odoo.conf 
+2025-07-23 05:12:27,673 17836 INFO ? odoo: addons paths: ['C:\\Users\\welcome\\Desktop\\odoo\\server\\odoo\\addons', 'c:\\users\\welcome\\desktop\\odoo\\sessions\\addons\\18.0', 'c:\\users\\welcome\\desktop\\odoo\\server\\odoo\\addons'] 
+2025-07-23 05:12:27,673 17836 INFO ? odoo: database: openpg@localhost:5432 
+2025-07-23 05:12:29,279 17836 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at C:\Users\welcome\Desktop\odoo\thirdparty\wkhtmltopdf.exe 
+2025-07-23 05:12:29,303 17836 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2025-07-23 05:12:31,846 17836 INFO ? odoo.service.server: Initiating shutdown 
+2025-07-23 05:12:31,846 17836 INFO ? odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
+2025-07-23 05:12:54,156 24056 INFO ? odoo: Odoo version 18.0-20250722 
+2025-07-23 05:12:54,156 24056 INFO ? odoo: Using configuration file at C:\Users\welcome\Desktop\odoo\server\odoo.conf 
+2025-07-23 05:12:54,156 24056 INFO ? odoo: addons paths: ['C:\\Users\\welcome\\Desktop\\odoo\\server\\odoo\\addons', 'c:\\users\\welcome\\desktop\\odoo\\sessions\\addons\\18.0', 'c:\\users\\welcome\\desktop\\odoo\\server\\odoo\\addons'] 
+2025-07-23 05:12:54,156 24056 INFO ? odoo: database: openpg@localhost:5432 
+2025-07-23 05:12:55,633 24056 INFO ? odoo.addons.base.models.ir_actions_report: Will use the Wkhtmltopdf binary at C:\Users\welcome\Desktop\odoo\thirdparty\wkhtmltopdf.exe 
+2025-07-23 05:12:55,649 24056 INFO ? odoo.addons.base.models.ir_actions_report: You need Wkhtmltoimage to generate images from html. 
+2025-07-23 05:12:58,583 24056 INFO ? odoo.service.server: HTTP service (werkzeug) running on DESKTOP-6D3RLC4:8069 
+2025-07-23 05:12:58,808 24056 INFO ? odoo.sql_db: Connection to the database failed 
+2025-07-23 05:12:58,858 24056 INFO ? odoo.sql_db: Connection to the database failed 
+2025-07-23 05:53:29,258 24056 INFO ? odoo.service.server: Initiating shutdown 
+2025-07-23 05:53:29,277 24056 INFO ? odoo.service.server: Hit CTRL-C again or send a second signal to force the shutdown. 
