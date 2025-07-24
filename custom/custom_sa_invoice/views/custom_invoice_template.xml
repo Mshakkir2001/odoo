@@ -30,15 +30,16 @@
   </div>
 
   <!-- Arabic Right -->
-<div style="width: 32%; text-align: right; direction: rtl; font-size: 13px; line-height: 1.6;">
+<div style="width: 32%; text-align: right; direction: rtl; font-size: 13px; line-height: 1.8; font-family: 'Arial', sans-serif;">
     <u><strong style="color: #581d35;">شركة سمير شرف العتيبي التجارية</strong></u><br/>
     س.ت: ٤٠٣٠٢١٦١٥٤<br/>
     رقم ضريبة القيمة المضافة: ٣١١٢٩٩٩٤٤٧٠٠٠٠٣<br/>
     مركز الأنوار، رقم محل ١٢، شارع البلدية<br/>
     جدة ٢٣٣٣٤ - المملكة العربية السعودية<br/>
     هاتف: ٠٥٣٦١٢٢٨٣٣<br/>
-    Email: ssaoe.jeddah@gmail.com
-  </div>
+    <span style="direction: ltr; display: inline-block;">Email: ssaoe.jeddah@gmail.com</span>
+</div>
+
 
 </div>
 
