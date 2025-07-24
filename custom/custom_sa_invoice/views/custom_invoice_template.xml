@@ -211,27 +211,30 @@
 
 
   <xpath expr="//div[@id='payment_term']" position="after">
-  <div class="mt-4" style="margin-top:10px;">
-    <table style="width:100%; border:1px solid #000; border-collapse:collapse; font-size:12px;">
-      <tr>
-        <!-- English label right-aligned -->
-        <td style="width:30%; padding:6px 10px; text-align:right; font-weight:bold; white-space: nowrap;">
-          Bank Details :
-        </td>
+<div class="mt-4" style="margin-top:10px;">
+  <table style="width:100%; border:1px solid #000; border-collapse:collapse; font-size:12px;">
+    <tr>
+      <td style="padding:10px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
 
-        <!-- Centered bank info -->
-        <td style="width:40%; padding:6px 10px; text-align:center; white-space: normal;">
-          SNB Beneficiary Name: Sameer Sharaf Al-Otibi Trading Co.<br/>
-          IBAN: SA29 1000 00 10768366000104
-        </td>
+          <!-- Left: English -->
+          <div style="text-align: left; direction: ltr;">
+            <strong>Bank Details:</strong><br/>
+            SNB Beneficiary Name: Sameer Sharaf Al-Otibi Trading Co.<br/>
+            IBAN: SA29 1000 00 10768366000104
+          </div>
 
-        <!-- Arabic label left-aligned -->
-        <td style="width:30%; padding:6px 10px; text-align:left; font-weight:bold; white-space: nowrap;">
-          التفاصيل المصرفية :
-        </td>
-      </tr>
-    </table>
-  </div>
+          <!-- Right: Arabic -->
+          <div style="text-align: right; direction: rtl;">
+            <strong>التفاصيل المصرفية:</strong>
+          </div>
+
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
 </xpath>
   </template>
 </odoo>
