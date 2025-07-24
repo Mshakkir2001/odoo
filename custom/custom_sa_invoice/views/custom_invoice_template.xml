@@ -134,9 +134,9 @@
                           <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
                               خص<br/><span style="font-weight:normal;">Disc</span>
                           </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-
-                          </th>
+                         <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
+                             مبلغ<br/><span style="font-weight:normal;">Amount</span>
+                         </th>
                           <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
                               الضريبة %<br/><span style="font-weight:normal;">VAT%</span></th>
                           <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
@@ -160,7 +160,7 @@
                           <td style="border: 1px solid #000;"><t t-esc="line.product_uom_id.name"/></td>
                           <td style="border: 1px solid #000;"><t t-esc="line.price_unit"/></td>
                           <td style="border: 1px solid #000;"><t t-esc="line.discount"/>%</td>
-                          <td style="border: 1px solid #000;"><t t-esc="line.price_subtotal"/></td>
+<!--                          <td style="border: 1px solid #000;"><t t-esc="line.price_subtotal"/></td>-->
                           <td style="border: 1px solid #000;">
                               <t t-if="line.tax_ids">
                                   <t t-esc="', '.join(['%.2f' % tax.amount for tax in line.tax_ids])"/>%
