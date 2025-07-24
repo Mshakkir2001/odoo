@@ -111,67 +111,44 @@
     <!-- ✅ Replace Table Headers -->
     <xpath expr="//table[@name='invoice_line_table']" position="replace">
           <table name="invoice_line_table" style="width:100%; border-collapse: collapse; font-size:12px; text-align:center;">
-                  <thead>
-                      <tr>
-                         <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                             م<br/><span style="font-weight:normal;">S.N</span>
-                         </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                              الصنف<br/><span style="font-weight:normal;">Item</span>
-                          </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                              الوصف<br/><span style="font-weight:normal;">Description</span>
-                          </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                              الكمية<br/><span style="font-weight:normal;">QTY</span>
-                          </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                              الوحدة<br/><span style="font-weight:normal;">Unit</span>
-                          </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                              سعر الوحدة<br/><span style="font-weight:normal;">S.Rate</span>
-                          </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                              خص<br/><span style="font-weight:normal;">Disc</span>
-                          </th>
-                         <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                             مبلغ<br/><span style="font-weight:normal;">Amount</span>
-                         </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                              الضريبة %<br/><span style="font-weight:normal;">VAT%</span></th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                          </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                              القيمة الضريبة <br/><span style="font-weight:normal;">VAT</span>
-                          </th>
-                          <th style="border: 1px solid #000; text-align:center; font-weight:bold; font-size:11px;">
-                              القيمة الإجمالية<br/><span style="font-weight:normal;">Total Price</span>
-                          </th>
+    <thead>
+        <tr>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">م<br/><span style="font-weight:normal;">S.N</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">الصنف<br/><span style="font-weight:normal;">Item</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">الوصف<br/><span style="font-weight:normal;">Description</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">الكمية<br/><span style="font-weight:normal;">QTY</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">الوحدة<br/><span style="font-weight:normal;">Unit</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">سعر الوحدة<br/><span style="font-weight:normal;">S.Rate</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">خص<br/><span style="font-weight:normal;">Disc</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">مبلغ<br/><span style="font-weight:normal;">Amount</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">الضريبة %<br/><span style="font-weight:normal;">VAT%</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">القيمة الضريبة<br/><span style="font-weight:normal;">VAT</span></th>
+            <th style="border: 1px solid #000; font-weight:bold; font-size:11px;">القيمة الإجمالية<br/><span style="font-weight:normal;">Total Price</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <t t-foreach="o.invoice_line_ids" t-as="line" t-esc-options='{"widget": "float", "precision_digits": 2}'>
+            <tr>
+                <td style="border: 1px solid #000;"><t t-esc="line.sequence"/></td>
+                <td style="border: 1px solid #000;"><t t-esc="line.product_id.display_name"/></td>
+                <td style="border: 1px solid #000;"><t t-esc="line.name"/></td>
+                <td style="border: 1px solid #000;"><t t-esc="line.quantity"/></td>
+                <td style="border: 1px solid #000;"><t t-esc="line.product_uom_id.name"/></td>
+                <td style="border: 1px solid #000;"><t t-esc="line.price_unit"/></td>
+                <td style="border: 1px solid #000;"><t t-esc="line.discount"/>%</td>
+                <td style="border: 1px solid #000;"><t t-esc="line.price_subtotal"/></td>
+                <td style="border: 1px solid #000;">
+                    <t t-if="line.tax_ids">
+                        <t t-esc="', '.join(['%.2f' % tax.amount for tax in line.tax_ids])"/>%
+                    </t>
+                </td>
+                <td style="border: 1px solid #000;"><t t-esc="line.price_total - line.price_subtotal"/></td>
+                <td style="border: 1px solid #000;"><t t-esc="line.price_total"/></td>
+            </tr>
+        </t>
+    </tbody>
+</table>
 
-                      </tr>
-                  </thead>
-              <tbody>
-                  <t t-foreach="o.invoice_line_ids" t-as="line" t-esc-options='{"widget": "float", "precision_digits": 2}'>
-                      <tr>
-                          <td style="border: 1px solid #000;"><t t-esc="line.sequence"/></td>
-                          <td style="border: 1px solid #000;"><t t-esc="line.product_id.display_name"/></td>
-                          <td style="border: 1px solid #000;"><t t-esc="line.name"/></td>
-                          <td style="border: 1px solid #000;"><t t-esc="line.quantity"/></td>
-                          <td style="border: 1px solid #000;"><t t-esc="line.product_uom_id.name"/></td>
-                          <td style="border: 1px solid #000;"><t t-esc="line.price_unit"/></td>
-                          <td style="border: 1px solid #000;"><t t-esc="line.discount"/>%</td>
-<!--                          <td style="border: 1px solid #000;"><t t-esc="line.price_subtotal"/></td>-->
-                          <td style="border: 1px solid #000;">
-                              <t t-if="line.tax_ids">
-                                  <t t-esc="', '.join(['%.2f' % tax.amount for tax in line.tax_ids])"/>%
-                              </t>
-                          </td>
-                          <td style="border: 1px solid #000;"><t t-esc="line.price_total - line.price_subtotal"/></td>
-                          <td style="border: 1px solid #000;"><t t-esc="line.price_total"/></td>
-                      </tr>
-                  </t>
-              </tbody>
-          </table>
     </xpath>
 
 <xpath expr="//div[@id='right-elements']" position="replace">
