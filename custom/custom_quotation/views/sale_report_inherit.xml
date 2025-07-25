@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_custom" inherit_id="sale.report_saleorder_document">
+
+        <!-- Example: Add custom text after the order lines -->
+        <xpath expr="//t[@t-call='web.basic_layout']//div[@class='page']//table[last()]" position="after">
+            <div class="mt-4" style="margin-top:20px;">
+                <strong>Thank you for your business!</strong>
+            </div>
+        </xpath>
+
+        <!-- Example: Modify the quotation title -->
+        <xpath expr="//h2[contains(text(),'Quotation')]" position="replace">
+            <h2>Custom Sales Quotation</h2>
+        </xpath>
+
+    </template>
+</odoo>
