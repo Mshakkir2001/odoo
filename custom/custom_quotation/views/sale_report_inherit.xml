@@ -2,16 +2,18 @@
 <odoo>
     <template id="report_saleorder_document_custom" inherit_id="sale.report_saleorder_document">
 
-        <!-- Example: Add custom text after the order lines -->
-        <xpath expr="//t[@t-call='web.basic_layout']//div[@class='page']//table[last()]" position="after">
-            <div class="mt-4" style="margin-top:20px;">
-                <strong>Thank you for your business!</strong>
-            </div>
+     <xpath expr="//t[@t-set='layout_document_title']" position="replace">
+            <t t-set="layout_document_title">
+                <span>🧾 Custom Quotation: </span>
+                <span t-field="doc.name"/>
+            </t>
         </xpath>
 
-        <!-- Example: Modify the quotation title -->
-        <xpath expr="//h2[contains(text(),'Quotation')]" position="replace">
-            <h2>Custom Sales Quotation</h2>
+        <!-- Add message below order lines -->
+        <xpath expr="//table[contains(@class, 'o_main_table')]" position="after">
+            <div style="margin-top: 20px; font-size: 14px; text-align: center;">
+                <strong>Thank you for considering our offer!</strong>
+            </div>
         </xpath>
 
     </template>
